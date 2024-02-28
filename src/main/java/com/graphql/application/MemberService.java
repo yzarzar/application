@@ -39,7 +39,7 @@ public class MemberService {
         return this.memberRepository.findById(id)
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("Book not found with id : " + id)))
                 .flatMap(member -> {
-                    member.setEmail(member.getEmail());
+                    member.setEmail(memberInput.getEmail());
                     member.setPassword(memberInput.getPassword());
                     return this.memberRepository.save(member);
                 });
